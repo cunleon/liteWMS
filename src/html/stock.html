@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>LiteWMS 极简仓库管理系统</title> 
+        <link href="css/styles.css" rel="stylesheet" />     
+        <link href="css/icomoon.css" rel="stylesheet" />  
+        <link href="css/sweetalert.css" rel="stylesheet" />       
+        <script src="js/jquery-3.7.0.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
+        <script src="js/wms_common.js"></script>        
+<style>
+.category-select{
+  flex:auto;
+}
+
+.my-table{
+    margin-top: 16px;
+}
+
+tr{
+  padding: 0px;
+} 
+td{
+  padding: 0px;
+} 
+tr:hover{
+    background-color: #FFF;
+}
+td * {
+ margin: 0px;
+ width: 100%;
+ height: 2em;
+ border:0px;
+ background-color: transparent;
+}
+
+td *:focus {
+    outline: 0px;
+    border:0px;
+}
+
+.td_input:focus{
+    outline: 0px;
+}
+
+td>button{
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  background-color:rgb(0, 0, 0,0);
+  border: 0;
+}
+td>button:hover{
+  color: brown;
+}
+
+.dlg-size{
+    width: 75%;
+}
+
+.wem-2{
+    max-width: 64px;
+}
+.wem-4{
+    max-width: 124px;
+}
+
+tbody tr:hover{
+    background-color: antiquewhite;
+}
+
+
+.td_w1{width: 5%;}
+.td_w2{width: 10%;}
+.td_w3{width: 15%;}
+.td_w4{width: 20%;}
+.td_w5{width: 25%;}
+.td_w6{width: 30%;}
+.td_w7{width: 35%;}
+.td_w8{width: 40%;}
+.td_w9{width: 45%;}
+.td_w10{width: 50%;}
+.td_w11{width: 55%;}
+.td_w12{width: 60%;}
+.td_w13{width: 65%;}
+.td_w14{width: 70%;}
+.td_w15{width: 75%;}
+.td_w16{width: 80%;}
+.td_w17{width: 85%;}
+.td_w18{width: 90%;}
+.td_w19{width: 95%;}
+.td_w20{width: 100%;}
+
+</style>
+    </head>
+    <body class="sb-nav-fixed">
+
+        <div id="layoutSidenav">
+            <div id="toggle_div">                        
+                <!-- Sidebar Toggle-->
+                <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 fs-2" id="sidebarToggle"><i class="icon-indent-increase"></i></button>
+            </div> 
+            <!-- 开始侧边栏 -->
+            <div id="layoutSidenav_nav">
+                
+            </div>
+            <!-- 结束侧边栏 -->     
+            <!--#include file="/inc/side-nav.html"-->
+
+            <!-- 开始内容 -->
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4 fill_height page-contenx-card">
+                        <h3 class="mt-4 pading_left">库存管理</h3>
+                        <!-- 开始左右分割器 -->                   
+                        <div class="row auto-fill_height">           
+                            <div class="col-xl-12 col-md-12">
+                                <div>
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <i class="icon-enter me-2 fs-5"></i> 出入库登记
+                                        </div>
+            
+                                        <div class="card-body row">
+                                            <div class="col-xl-4 col-md-4">
+                                                <div class="input-group">
+                                                    <span id="page_info" class="input-group-text" >登记日期</span>
+                                                    <input id="work_date" type="date" class="form-control" min="2024-01-01" max="2034-12-31" />                                                
+                                                    
+                                                </div>
+                                                <div class="input-group">
+                                                    <span id="page_info" class="input-group-text" >凭证字号</span>
+                                                    <select id="voucher_word" class="form-control" onChange="on_word_change(this)"> 
+                                                        <option value="出字">出字</option>  <option value="入字">入字</option>
+                                                    </select>
+                                                    <input class="form-control" id="voucher_code" type="number" placeholder="凭证号" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-8 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-text" >名称</span>
+                                                    <input class="form-control" id="item_input" onchange="on_item_input_change(this)" type="text" placeholder="物品名称" valude="" list="item_list"/>
+                                                    <datalist id="item_list">
+                                                    </datalist>
+
+                                                    <span id="page_info" class="input-group-text" >摘要</span>
+                                                    <input class="form-control" id="recode_note"  type="text" placeholder="备注可选" value="">
+
+                                                    <span id="page_info" class="input-group-text" >类别</span>                                                
+                                                    <input id="item_cate" class="form-control" type="text" placeholder="物品类别" value="" readonly="true" onkeydown="on_note_keydown(this,event)">
+        
+
+                                                    <span id="page_info" class="input-group-text" >经手人员</span>
+                                                    <input class="form-control" id="recode_who" type="text" placeholder="领用人或供应商" valude="" list="vendor_list"/>
+                                                        <datalist id="vendor_list">
+                                                            <option>库管员</option>
+                                                        </datalist>
+
+
+ 
+                                                </div>
+                                                <div class="input-group">
+                                                    <span id="page_info" class="input-group-text" >入库</span>
+                                                    <input id="stock_in" class="form-control" type="number" placeholder="入库数量" value="" min="0" max="1000" onkeydown="on_input_keydown(this,event)">                                                
+                                                    <span id="page_info" class="input-group-text" >出库</span>
+                                                    <input id="stock_out" class="form-control" type="number" placeholder="出库数量" value="" min="0" max="1000" onkeydown="on_input_keydown(this,event)">
+                                                    <span id="page_info" class="input-group-text" >单位</span>
+                                                    <input id="item_unit" class="form-control" type="text"  value="" readonly="true" onkeydown="on_input_keydown(this,event)">
+                                                    <span id="page_info" class="input-group-text" >入库金额</span>
+                                                    <input class="form-control" id="amount" type="number" placeholder="入库时可选填写" value=""onkeydown="on_note_keydown(this,event)">
+                                                </div>
+                                            </div>
+
+
+                                           
+
+
+                                            <div class="input-group mt-4">
+                                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    添加新物品
+                                                </button>
+                                                <input class="" type="hidden" id="recode_id" value="0" /> 
+                                                <div class="form-control"><span id="prompt_info">----</span></div>
+                                                <button id="reset_btn" class="btn btn-outline-secondary" type="button" onclick="reset_inputs()">重置输入</button> 
+                                                <button id="save_btn" class="btn btn-outline-secondary" type="button" onclick="save_stock_recode(this)">保存出入库记录</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <i class="icon-attachment mt-1 me-2 fs-5"></i>最新出入库记录表
+                                        </div>      
+                                        <div class="card-body">
+                                            <div class="input-group">
+                                                <button class="btn btn-outline-secondary" type="button" onclick="last10_recode_click(this)">最新10条记录</button>                                                
+                                                <button class="btn btn-outline-secondary" type="button" onclick="next10_recode_click(this)">下10条记录</button>
+
+                                                <div class="form-control"></div>
+                                            </div>
+
+                                             <table class="table table-bordered" id="attachment_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th >ID</th><th >字</th><th >号</th><th >日期</th>
+                                                        <th >分类</th><th >物品ID</th><th>物品名称</th><th >摘要或备注</th><th>单位</th> 
+                                                        <th >入库</th><th >出库</th><th >总金额</th><th >库存</th>
+                                                        <th >供货商/领用人</th><td>操作</td>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="recodes_table">   
+                                                </tbody>
+                                            </table>
+                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered  modal-xl">
+      <div class="modal-content dlg-size">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">添加新物品</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="updata_item_datalist()"></button>
+        </div>
+        <div class="modal-body">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>添加物品(不存在的物品请先添加物品)
+            </div>
+
+            <div class="card-body">       
+                <table class="table table-bordered" id="add_item">
+                    <thead>
+                        <tr>
+                            <th class="td_w3">物品类别</th>  <th class="td_w3">仓库位置</th>      
+                            <th >物品名称</th>  <th class="td_w3">计量单位</th>    <th class="td_w3">添加</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><select id="add_item_dlg_category_select"></select></td>
+                            <td><select id="add_item_dlg_place_select"></td>                                                        
+                            <td><input type="text" class="td_input" value=""></td>
+                            <td><input type="text" class="td_input" value=""></td>
+                            <td><input type="button" value="添加" onclick="add_item_clk(this);"></td>
+                        </tr>
+
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="updata_item_datalist()" data-bs-dismiss="modal">完成</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+
+                <!-- 开始页脚版权申明-->
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div id="copyright_div" class="text-muted"></div>
+                            <div>
+                                sldfjsd
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- 结束页脚版权申明-->
+            </div>
+            <!-- 结束内容 -->
+        </div>
+
+        <script src="js/stock.js"></script>
+    </body>
+</html>

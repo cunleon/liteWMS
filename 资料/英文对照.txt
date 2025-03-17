@@ -1,0 +1,43 @@
+ERP术语 英文对照（部分）（参考）
+
+供应商        Supplier
+仓库               Stockroom
+库存          Inventory
+货品          Product
+型号          Part Number
+单据               Bill
+成本          Cost
+
+
+采购          Purchase
+采购申请      Purchase Requisition
+ 
+
+出库单        Stock Out
+入库单        Stock In
+转仓          Stock Transfer
+
+
+发票          Invoice
+
+应收帐        Account Receivable
+应付账        Account Payable
+
+应收帐冲销    Account Receivable Write-off
+应付账冲销    Account Payable Write-off
+
+会计信息系统   Accounting information System
+
+账户           Ledger
+会计科目       Account
+会计分录       Journal entry
+原始凭证       Source Document
+日记账         Journal
+
+总分类账       General Ledger
+明细分类账     Subsidiary Ledger
+
+
+在库          On Hand
+
+审批          Approve

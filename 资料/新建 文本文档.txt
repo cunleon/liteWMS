@@ -1,0 +1,246 @@
+#include <windows.h>
+#include <string.h>
+
+int SetPrintParams(void)
+{
+	HANDLE hPrinter = NULL;
+	PRINTER_INFO_2* pi2 = NULL;
+	DEVMODE* pDevMode = NULL;
+	PRINTER_DEFAULTS pd;
+	DWORD dwNeeded = 0;
+
+	BOOL bFlag;
+	LONG lFlag;
+
+	// 获取默认打印机名称
+	CHAR szDevName[MAX_PATH] = "";
+	DWORD dwLength = MAX_PATH;
+	if (!GetDefaultPrinter(szDevName, &dwLength))
+	{
+		return 1;
+	}
+
+	ZeroMemory(&pd, sizeof(pd));
+	pd.DesiredAccess = PRINTER_ALL_ACCESS;
+	// 打开打印机
+	bFlag = OpenPrinter(szDevName, &hPrinter, &pd);
+	if (!bFlag || (hPrinter == NULL))
+	{
+		return 2;
+	}
+	// 获取pi2数据结构的尺寸
+	bFlag = GetPrinter(hPrinter, 2, 0, 0, &dwNeeded);
+	if ((!bFlag) && (GetLastError() != ERROR_INSUFFICIENT_BUFFER) || (dwNeeded == 0))
+	{
+		ClosePrinter(hPrinter);
+		hPrinter = NULL;
+		return 3;
+	}
+
+	pi2 = (PRINTER_INFO_2 *)GlobalAlloc(GPTR, dwNeeded);
+	if (pi2 == NULL)
+	{
+		ClosePrinter(hPrinter);
+		hPrinter = NULL;
+		return 4;
+	}
+
+	// 取得与指定打印机有关的信息PRINTER_INFO_2
+	bFlag = GetPrinter(hPrinter, 2, (LPBYTE)pi2, dwNeeded, &dwNeeded);
+	if (!bFlag)
+	{
+		GlobalFree(pi2);
+		ClosePrinter(hPrinter);
+		hPrinter = NULL;
+		return 5;
+	}
+
+	// DEVMODE数据结构中包含了有关设备初始化和打印机环境的信息
+	if (pi2->pDevMode == NULL)
+	{
+		// 获取pDevMode数据结构的尺寸
+		dwNeeded = DocumentProperties(NULL, hPrinter,
+			szDevName,
+			NULL, NULL, 0);
+		if (dwNeeded <= 0)
+		{
+			GlobalFree(pi2);
+			ClosePrinter(hPrinter);
+			hPrinter = NULL;
+			return 6;
+		}
+
+		pDevMode = (DEVMODE *)GlobalAlloc(GPTR, dwNeeded);
+		if (pDevMode == NULL)
+		{
+			GlobalFree(pi2);
+			ClosePrinter(hPrinter);
+			hPrinter = NULL;
+			return 7;
+		}
+
+		// 输出打印机设置信息到pDevMode
+		lFlag = DocumentProperties(NULL, hPrinter,
+			szDevName,
+			pDevMode, NULL,
+			DM_OUT_BUFFER);
+		if (lFlag != IDOK || pDevMode == NULL)
+		{
+			GlobalFree(pDevMode);
+			GlobalFree(pi2);
+			ClosePrinter(hPrinter);
+			hPrinter = NULL;
+			return 8;
+		}
+
+		pi2->pDevMode = pDevMode;
+	}
+
+	// 指定打印机的出纸匣，每台打印机的纸匣号不一样，我这边是，0自动选择, 1是纸匣1，2是纸匣2
+	pi2->pDevMode->dmFields = pi2->pDevMode->dmFields | DM_DEFAULTSOURCE;
+	int iBoxID = 0;
+	pi2->pDevMode->dmDefaultSource = iBoxID;
+
+	// 打印机使用的纸张尺寸(查找对应系统宏定义: DMPAPER_A4  9)
+	pi2->pDevMode->dmFields = pi2->pDevMode->dmFields | DM_PAPERSIZE;
+	int iPageSize = DMPAPER_A4;
+	pi2->pDevMode->dmPaperSize = iPageSize;
+
+	// 纸张类型，根据不同打印机有不同配置，我这边普通纸张是284
+	pi2->pDevMode->dmFields = pi2->pDevMode->dmFields | DM_MEDIATYPE;
+	int iMediaType = 284;
+	pi2->pDevMode->dmMediaType = iMediaType;
+
+	// 双面打印模式
+	pi2->pDevMode->dmFields = pi2->pDevMode->dmFields | DM_DUPLEX;
+	int iOffset = pi2->pDevMode->dmSize;
+	LPBYTE lpByteDevMode = (LPBYTE)pi2->pDevMode;
+	// 是否双面(1单面 / 2双面)
+	int iDuplex = 1;
+	if (iDuplex == 1)
+	{
+		pi2->pDevMode->dmDuplex = 1;
+		lpByteDevMode[iOffset + 84] = 1;
+		lpByteDevMode[iOffset + 86] = 0;
+	}
+	else if(iDuplex == 2)
+	{
+		pi2->pDevMode->dmDuplex = 2;
+		lpByteDevMode[iOffset + 84] = 2;
+		lpByteDevMode[iOffset + 86] = 1;
+	}
+
+	// 彩色打印机颜色设置
+	pi2->pDevMode->dmFields = pi2->pDevMode->dmFields | DM_COLOR;
+	//1单色, 2彩色打印
+	int	iColor = 1;
+	if (iColor == 1)
+	{
+		pi2->pDevMode->dmColor = DMCOLOR_MONOCHROME;
+	}
+	else if (iColor == 2)
+	{
+		pi2->pDevMode->dmColor = DMCOLOR_COLOR;
+	}
+
+	pi2->pSecurityDescriptor = NULL;
+
+	// 将修改后的pDevMode载入打印机驱动程序的新位置
+	lFlag = DocumentProperties(NULL, hPrinter,
+		szDevName,
+		pi2->pDevMode, 
+		pi2->pDevMode,
+		DM_IN_BUFFER | DM_OUT_BUFFER);
+	if (lFlag != IDOK)
+	{
+		GlobalFree(pi2);
+		ClosePrinter(hPrinter);
+		if (pDevMode)
+		{
+			GlobalFree(pDevMode);
+		}
+		hPrinter = NULL;
+		return 10;
+	}
+
+	// 将pi2载入打印机
+	bFlag = SetPrinter(hPrinter, 2, (LPBYTE)pi2, 0);
+	if (!bFlag)
+	{
+		GlobalFree(pi2);
+		ClosePrinter(hPrinter);
+		if (pDevMode)
+		{
+			GlobalFree(pDevMode);
+		}
+		hPrinter = NULL;
+		return 11;
+	}
+	
+	// 使打印机配置修改生效
+	SendMessageTimeout(HWND_BROADCAST, WM_DEVMODECHANGE,
+		0L,
+		(LPARAM)(LPCSTR)szDevName,
+		SMTO_NORMAL, 1000, NULL);
+	
+	//关闭打印机释放资源
+	if (hPrinter != NULL)
+	{
+		int iC = ClosePrinter(hPrinter);
+		hPrinter = NULL;
+
+		if (pi2 != NULL)
+		{
+			GlobalFree(pi2);
+			pi2 = NULL;
+		}
+
+		if (pDevMode != NULL)
+		{
+			GlobalFree(pDevMode);
+			pDevMode = NULL;
+		}
+	}
+
+	return 0;
+}
+
+
+//PDevMode = _devicemodeW;
+//  _devicemodeW = record
+//    dmDeviceName: array[0..CCHDEVICENAME - 1] of WideChar; {打印设备名称,唯一值}
+//    dmSpecVersion: Word;  {DevMode的版本号}
+//    dmDriverVersion: Word;  {打印驱动程序版本号}
+//    dmSize: Word; {DevMode结构的字节大小}
+//    dmDriverExtra: Word; {dmDriverExtra成员结构的大小}
+//    dmFields: DWORD; {DevMode结构中哪些成员已被初始化}
+//    dmOrientation: SHORT; {纸张方向;1(纵向)2(横向)}
+//    dmPaperSize: SHORT; {纸张大小}
+//    dmPaperLength: SHORT; {自定义纸张的高度,PageSize为0或256时有效}
+//    dmPaperWidth: SHORT; {自定义纸张的宽度,PageSize为0或256时有效}
+//    dmScale: SHORT; {打印输出的缩放系数}
+//    dmCopies: SHORT; {打印份数}
+//    dmDefaultSource: SHORT; {送纸的默认纸盒}
+//    dmPrintQuality: SHORT; {打印机的分辨率;4-高品质 3-中品质 2-低品质 1-草稿}
+//    dmColor: SHORT; {打印输出为彩色或是单色;1-彩色 2-单色}
+//    dmDuplex: SHORT; {纸张是否为双面打印输出;1-单面 2-水平 3-垂直(需打印支持)}
+//    dmYResolution: SHORT; {Y方向分辨率;单位:点}
+//    dmTTOption: SHORT; {如何打印TrueType字体}
+//    dmCollate: SHORT; {多份时,是否逐份打印}
+//    dmFormName: array[0..CCHFORMNAME - 1] of WideChar; {纸张名称}
+//    dmLogPixels: Word; {}
+//    dmBitsPerPel: DWORD; {显示设备的颜色分辨率;单位:像素}
+//    dmPelsWidth: DWORD; {可见设备表面(屏幕或打印机)的宽度}
+//    dmPelsHeight: DWORD;  {可见设备表面(屏幕或打印机)的高度}
+//    dmDisplayFlags: DWORD; {设备的显示模式}
+//    dmDisplayFrequency: DWORD; {显示设备在特定模式下的频率}
+//    dmICMMethod: DWORD; {}
+//    dmICMIntent: DWORD; {}
+//    dmMediaType: DWORD; {}
+//    dmDitherType: DWORD; {}
+//    dmICCManufacturer: DWORD; {}
+//    dmICCModel: DWORD; {}
+//    dmPanningWidth: DWORD; {}
+//    dmPanningHeight: DWORD; {}
+
+

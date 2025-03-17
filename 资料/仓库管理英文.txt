@@ -1,0 +1,303 @@
+一、基本概念术语
+　　1．物品 article
+　　2．物流 logistics
+　　3．物流活动 logistics activity
+　　4．物流作业 logistics operation
+　　5．物流模数 logistics modulus
+　　6．物流技术 logistics technology
+　　7．物流成本 logistics cost
+　　8．物流管理 logistics management
+　　9．物流中心 logistics center
+　　10．物流网络 logistics network
+　　11．物流信息 logistics information
+　　12．物流企业 logistics enterprise
+　　13．物流单证 logistics documents
+　　14．物流联盟 logistics alliance
+　　15．供应物流 supply logistics
+　　16．生产物流 production logistics
+　　17．销售物流 distribution logistics
+　　18．回收物流 returned logistics
+　　19．废弃物物流 waste material logistics
+　　20．绿色物流 environmental logistics
+　　21．企业物流 internal logistics
+　　22．社会物流 external logistics
+　　23．军事物流 military logistics
+　　24．国际物流 international logistics
+　　25．第三方物流 third-part logistics (TPL)
+　　26．定制物流 customized logistics
+　　27．虚拟物流 virtual logistics
+　　28．增值物流服务 value-added logistics service
+　　29．供应链 supply chain
+　　30．条码 bar code
+　　31．电子数据交换 electronic data interchange (EDI)
+　　32．有形消耗 tangible loss
+　　33．无形消耗 intangible loss
+
+　　二、物流作业术语
+　　1．运输 transportation
+　　2．联合运输 combined transport
+　　3．直达运输 through transport
+　　4．中转运输 transfer transport
+　　5．甩挂运输 _drop and pull transport
+　　6．集装运输 containerized transport
+　　7．集装箱运输 container transport
+　　8．门到门 door-to-door
+　　9．整箱货 full container load (FCL)
+　　10．拼箱货 less than container load (LCL)
+　　11．储存 storing
+　　12．保管 storage
+　　13．物品储存 article reserves
+　　14．库存 inventory
+　　15．经常库存 cycle stock
+　　16．安全库存 safety stock
+　　17．库存周期 inventory cycle time
+　　18．前置期（或提前期） lead time
+　　19．订货处理周期 order cycle time
+　　20．货垛 goods stack
+　　21．堆码 stacking
+　　22．搬运 handling/carrying
+　　23．装卸 loading and unloading
+　　24．单元装卸 unit loading and unloading
+　　25．包装 package/packaging
+　　26．销售包装 sales package
+　　27．定牌包装 packing of nominated brand
+　　28．中性包装 neutral packing
+　　29．运输包装 transport package
+　　30．托盘包装 palletizing
+　　31．集装化 containerization
+　　32．散装化 containerization
+　　33．直接换装 cross docking
+　　34．配送 distribution
+　　35．共同配送 joint distribution
+　　36．配送中心 distribution center
+　　37．分拣 sorting
+　　38．拣选 order picking
+　　39．集货 goods collection
+　　40．组配 assembly
+　　41．流通加工 distribution processing
+　　42．冷链 cold chain
+　　43．检验 inspection
+
+　　三、物流技术装备及设施术语
+　　1．仓库 warehouse
+　　2．库房 storehouse
+　　3．自动化仓库 automatic warehouse
+　　4．4立体仓库 stereoscopic warehouse
+　　5．虚拟仓库 virtual warehouse
+　　6．保税仓库 boned warehouse
+　　7．出口监管仓库 export supervised warehouse
+　　8．海关监管货物 cargo under customs’s supervision
+　　9．冷藏区 chill space
+　　10．冷冻区 freeze space
+　　11．控湿储存区 humidity controlled space
+　　12．温度可控区 temperature controlled space
+　　13．收货区 receiving space
+　　14．发货区 shipping space
+　　15．料棚 goods shed
+　　16．货场 goods yard
+　　17．货架 goods shelf
+　　18．托盘 pallet
+　　19．叉车 fork lift truck
+　　20．输送机 conveyor
+　　21．自动导引车 automatic guided vehicle (AGV)
+　　22．箱式车 box car
+　　23．集装箱 container
+　　24．换算箱 twenty-feet equivalent unit (TEU)
+　　25．特种货物集装箱 specific cargo container
+　　26．全集装箱船 full container ship
+　　27．铁路集装箱场 railway container yard
+　　28．公路集装箱中转站 inland container depot
+　　29．集装箱货运站 container freight station (CFS)
+　　30．集装箱码头 container terminal
+　　31．国际铁路联运 international through railway transport
+　　32．国际多式联运 international multimodal transport
+　　33．大陆桥运输 land bridge transport
+　　34．班轮运输 liner transport
+　　35．租船运输 shipping by chartering
+　　36．船务代理 shipping agency
+　　37．国际货运代理 international freight forwarding agent
+　　38．理货 tally
+　　39．国际货物运输保险 international transportation cargo insurance
+　　40．报关 customs declaration
+　　41．报关行 customs broker
+　　42．进出口商品检验 commodity inspection
+
+　　四、物流管理术语
+　　1．物流战略 logistics strategy
+　　2．物流战略管理 logistics strategy management
+　　3．仓库管理 warehouse management
+　　4．仓库布局 warehouse layout
+　　5．库存控制 inventory control
+　　6．经济订货批量 economic order quantity (EOQ)
+　　7．定量订货方式 fixed-quantity system (FQS)
+　　8．定期订货方式 fixed-quantity system (FIS)
+　　9．ABC分类管理 ABC classification
+　　10．电子订货系统 Electronic order system (EOS)
+　　11．准时制 just in time (JIT)
+　　12．准时制物流 just-in-time logistics
+　　13．零库存技术 zero-inventory logistics
+　　14．物流成本管理 logistics cost control
+　　15．物料需要计划 material requirements planning (MRP)
+　　16．制造资源计划 manufacturing resource planning (MRP II)
+　　17．配送需要计划 distribution requirements planning (DRP)
+　　18．配送资源计划 distribution resource planning (DRP II)
+　　19．物流资源计划 logistics resource planning (LRP)
+　　20．企业资源计划 enterprise resource planning (ERP)
+　　21．供应链管理 supply chain management (SCM)
+　　22．快速反映 Quick response (QR)
+　　23．有效客户反映 efficient customer response(ECR)
+　　24．连续库存补充计划 continuous replenishment program (CRP)
+　　25．计算机付诸订货系统 computer assisted ordering
+　　26．供应商管理库存 vendor managed inventory (VMI)
+　　27．业务外包 outsourcing
+
+　　五、常用仓储物流英语50句
+　　1.Modern logistics is one of the most challenging and exciting jobs in the world.
+　　现代物流是世界上最富挑战性和最激动人心的工作。
+
+　　2.Logistics is part of a supply chain.
+　　物流是供应链的整体组成部分。
+
+　　3.Logistics is anything but a newborn baby.
+　　物流不是新鲜事。
+
+　　4.Logistics is a unique global “pipeline”.
+　　物流是独特的全球通道。
+
+　　5.Logistics is related to the effective and efficient flow of materials and information.
+　　物流所涉及的是物料和信息有效、快速的流动。
+
+　　6.Logistics operation and management include packaging, warehousing, material handling, inventory control, transport, forecasting, strategic planning, customer service, etc.
+　　物流操作和管理包括包装、仓储、物料搬运、库存控制、运输、预测、战略计划和客户服务等方面。
+
+　　7.Logistics consists of warehousing, transportation, loading and unloading, handling, carrying, packaging, processing, distribution and logistics information.
+　　物流由仓储、运输、装卸、搬运、包装、加工、配送和物流信息所组成。
+
+　　8.Logistics may be divided into supply logistics, production logistics, distribution logistics, returned logistics and waste material logistics.
+　　物流可以分成供应物流、生产物流、销售物流、回收物流和废弃物物流。
+
+　　9.Logistics is now the last frontier for increasing benefits in industrial production..
+　　物流是当今工业生产增加利润的最后领域。
+
+　　10.Logistics is unique, and it never stops!
+　　物流是独特的，它从不停止。
+
+　　11.Logistics performance is happening around the globe, twenty-four hours a day, seven days a week and fifty-two weeks a year.
+　　物流运作一天24小时、一周7天、一年52星期在全球发生。
+
+　　12.Logistics is concerned with getting products and services where they are needed and when they are desired.
+　　物流所涉及的是在需要的时候和在需要的地方去的产品和服务的活动。
+
+　　13.Logistics is the process of planning, implementing and controlling the efficient, effective flow and storage of goods, services and related information from the point of origin to the point of consumption for the purpose of conforming to customer　requirements.
+　　物流是计划实施和控制商品的快速、高效流动和储存，以及从源头到消费的服务和信息的全过程，以满足客户的需求。
+
+　　14.Logistics is a hot topic in China。
+　　中国掀起了物流热。
+
+　　15.The overall goal of logistics is to achieve a targeted level of customer service at the lowest possible total cost.
+　　物流的总目标是以最低的总成本实现客户服务的目标水平。
+
+　　16.It is important that persons involved in day-to-day logistics work have a basic understanding of logistics.
+　　重要的是，从事日常物流工作的人员应对物流有个基本的了解。
+
+　　17.Logistics must be managed as a core competency.
+　　物流必须作为一个核心能力来管理。
+
+　　18.Logistics competency directly depends on a firm’s strategic positioning.
+　　物流能力是有一家公司的战略定位直接决定的。
+
+　　19.Logistics service is a balance of service priority and cost.
+　　物流服务是服务优先与成本间的平衡。
+
+　　20.A lot of books on logistics, either in Chinese or in English, were published in 2002.
+　　2002年出版了大量的中、英文物流书籍。
+
+　　21.There is great room for logistics development in China.
+　　在中国，物流发展有巨大的空间。
+
+　　22.I wish to make logistics my lifetime career.
+　　我愿把物流作为我的终生事业。
+
+　　23.ABC classification is quite useful in inventory control.
+　　ABC分类管理在库存控制方面十分有用。
+
+　　24.The JIT production system was developed by the Toyota Motor Company about 50 years ago.
+　　准时制生产是大约50年前由丰田汽车公司开发出来。
+
+　　25.Just-in-time (JIT) techniques are sometimes referred to as just-in-time production,just-in-time purchasing and just-in-time delivery.
+　　准时制技术有时称为准时制生产、准时制采购和准时制交付。
+
+　　26.The key to JIT operations is that the demand for components and materials depends on the finalized production schedule.
+　　准时制作业的关键是对配件和物料的需求根据最终生产进度来决定。
+
+　　27.There are five basic modes of transportation. They are water transport, rail transport,truck transport, air transport and pipeline transport.
+　　基本运输方式有五种，他们是水陆运输、铁路运输、汽车运输、航空运输和管道运输。
+
+　　28.Transportation is a vital component in the design and management of logistics systems.
+　　运输是物流系统设计和管理中至关重要的组成部分。
+
+　　29.If you keep an overstock of the inventory, expenses will incur not only in warehousing,but also in many other aspects, such as the capital cost and interest accruing to it, taxes, insurance and obsolescence cost.
+　　如果过量库存，不仅会造成仓库费用而且在很多方面会产生费用，如资产成本和它所产生的利息，以及税收、保险和商品变成陈旧物的成本。
+
+　　30.Packing can be divided into industrial packaging and consumer packaging.
+　　包装可以分成工业包装和消费包装两种。
+
+　　31.Packaging about protect the goods against damages during handling, storing and transportation.
+　　包装应能保护货物在搬运、储存和运输过程中免受损坏。
+
+　　32.Due to improper packing, the goods are terribly damaged.
+　　由于包装不善，货物严重受损。
+
+　　33.Things like plastic, steel and glass can be recycled to reduce production cost so that natural resources are saved.
+　　塑料、钢铁和玻璃这样的物品能回收利用以降低生产成本、节约自然资源。
+
+　　34.Both buyers and suppliers can benefit a lot from the reduction in the number of suppliers.
+　　买卖双方都能从减少供应商的数量上获取许多利益。
+
+　　35.Just-in-time strategy ensures that while minimizing inventory levels, materials are made available for production.
+　　准时制战略确保在降低库存水平的同时能得到生产所需的物料。
+
+　　36.The goal of just-in-time purchasing is zero inventory.
+　　准时制采购的目标是零库存。
+
+　　37.Information is crucial to the performance of a supply chain.
+　　信息对供应链的运作是至关重要的。
+
+　　38.Setting inventory levels requires downstream information from customers on demand, upstream information from suppliers on availability and information on current inventory levels.
+　　制定库存水平需要下游客户需求信息、上游供应链可供信息和当前的库存水平信息。
+
+　　39.The idea of supply chain management was first put forward in the 1980s.
+　　供应链管理的理念最初在20世纪80年代提出。
+
+　　40.Supply chain management means the design, planning and control of the information flow, material flow and cash flow with a view to strengthening competitiveness.
+　　供应链管理就是对信息流、物料流和资金流进行设计、计划和控制以增强竞争力。(或：供应链管理是指为增强竞争力而对信息流、物料流和资金流进行的设计、策划和控制)
+
+　　41.Maritime shipping is an important link in international logistics service.
+　　海洋运输是国际物流服务的重要环节。
+
+　　42.There are two types of shipping markets: the liner market and the tramp market.
+　　航运市场分为两类：班轮运输和不定期船运输。
+
+　　43.A Container Load Plan is of five copies, each of which is to be given respectively to the terminal, the carrier, the shipping agent, the shipper and the party that stuffs the container.
+　　集装箱装箱单一式五份，分别交给集装箱码头、承运人、船务代理、托运人和装箱人。
+
+　　44.After the cargo is stuffed into a container, it is handed to the container yard (CY) to be loaded on board according to the stowage plan.
+　　货物装箱后，就拖运到集装箱堆场并根据积载图装上船。
+
+　　45.A container terminal connects sea and land, transferring containers to and from ships. It is capable of handling containers more quickly, economically, accurately and in greater volumes than conventional ports.
+　　集装箱码头连接陆运和海运，经船上装运集装箱。在装卸搬运上，集装箱码头比普通杂货码头更快、更经济、更准确、吞吐量更大。
+
+　　46.Information is a key to the success of logistics.
+　　信息是物流成功的关键。
+
+　　47.Warehousing is not a new business, but it has gained new functions in modern logistics.
+　　仓储不是新的行业，但他在现代物流中有了新的功能。
+
+　　48.Inventory control can effectively reduce logistics cost.
+　　库存控制能有效地降低物流成本。
+
+　　49.Packing and sorting are two activities in logistics.
+　　包装和分拣是物流中的两项活动。
+
+　　50.A supply chain is defined as a network composed of factories, suppliers, retailers and so on that supply each other with raw materials, components, products and service.
+　　供应链的定义是一个互相提供原材料、配件、产成品和服务的由工厂、供应商、零售商等组成的网络。

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>LiteWMS 极简仓库管理系统</title> 
+        <link href="css/styles.css" rel="stylesheet" />     
+        <link href="css/icomoon.css" rel="stylesheet" />  
+        <link href="css/sweetalert.css" rel="stylesheet" />       
+        <script src="js/jquery-3.7.0.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
+        <script src="js/wms_common.js"></script>        
+<style>
+.category-select{
+  flex:auto;
+}
+
+.my-table{
+    margin-top: 16px;
+}
+
+tr{
+  padding: 0px;
+} 
+td{
+  padding: 0px;
+} 
+tr:hover{
+    background-color: #FFF;
+}
+td * {
+ margin: 0px;
+ width: 100%;
+
+ border:0px;
+ background-color: transparent;
+}
+
+td *:focus {
+    outline: 0px;
+    border:0px;
+}
+
+.td_input:focus{
+    outline: 0px;
+}
+
+td>button{
+    display:inline;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    background-color:rgb(0, 0, 0,0);
+    border: 0;
+}
+td>button:hover{
+  color: brown;
+}
+
+.dlg-size{
+    width: 75%;
+}
+
+.wem-2{
+    max-width: 64px;
+}
+.wem-4{
+    max-width: 124px;
+}
+
+tbody tr:hover{
+    background-color: antiquewhite;
+}
+
+.td_em1{width: 1em;}
+.td_em2{width: 2em;}
+.td_em4{width: 4em;}
+.td_em8{width: 8em;}
+
+.td_w1{width: 5%;}
+.td_w2{width: 10%;}
+.td_w3{width: 15%;}
+.td_w4{width: 20%;}
+.td_w5{width: 25%;}
+.td_w6{width: 30%;}
+.td_w7{width: 35%;}
+.td_w8{width: 40%;}
+.td_w9{width: 45%;}
+.td_w10{width: 50%;}
+.td_w11{width: 55%;}
+.td_w12{width: 60%;}
+.td_w13{width: 65%;}
+.td_w14{width: 70%;}
+.td_w15{width: 75%;}
+.td_w16{width: 80%;}
+.td_w17{width: 85%;}
+.td_w18{width: 90%;}
+.td_w19{width: 95%;}
+.td_w20{width: 100%;}
+
+</style>
+    </head>
+    <body class="sb-nav-fixed">
+
+        <div id="layoutSidenav">
+            <div id="toggle_div">                        
+                <!-- Sidebar Toggle-->
+                <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 fs-2" id="sidebarToggle"><i class="icon-indent-increase"></i></button>
+            </div> 
+            <!-- 开始侧边栏 -->
+            <div id="layoutSidenav_nav">       
+            </div>
+
+            <!-- 开始内容 -->
+            <div id="layoutSidenav_content">
+                <main>
+                    <datalist id ="category_list">
+                        <option value="办公用品">
+                        <option value="卫生用品">
+                        <option value="体卫用品">
+                        <option value="grape">
+                    </datalist>
+                    <div class="container-fluid px-4 fill_height page-contenx-card">
+                        <h3 class="mt-4 pading_left">信息维护</h3>
+
+                        <div class="row">
+                            <!-- 开始物品信息卡片 -->
+                            <div class="col-xl-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="icon-enter me-2 fs-5"></i> 物品信息维护
+                                    </div>
+                                    <div class="card-body card-body-rull">
+                                        <table class="table table-bordered" id="item_talbe">
+                                            <thead>
+                                                <tr>
+                                                    <th class="td_em1">ID</th>  <th class="td_em8">类别</th>
+                                                    <th >名称</th> <th class="td_em4">单位</th>
+                                                    <th >使用频度</th> <th class="td_em4">库位</th>
+                                                    <th >报警值</th> <th >图片 </th> 
+                                                    <th class="td_em2"></th><th class="td_em2"> </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="item_table">   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 开始物品分类卡片 -->
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="icon-enter me-2 fs-5"></i> 物品分类信息维护
+                                    </div>
+                                    <div class="card-body card-body-rull">
+                                        <table class="table table-bordered" id="recode_talbe">
+                                            <thead>
+                                                <tr>
+                                                    <th >ID</th><th >名称</th><th >删除</th><th>保存</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="category_table">   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 开始供货商分类卡片 -->
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="icon-enter me-2 fs-5"></i> 供货商信息维护
+                                    </div>
+                                    <div class="card-body card-body-rull">
+                                        <table class="table table-bordered" id="recode_talbe">
+                                            <thead>
+                                                <tr>
+                                                    <th class="td_em1">ID</th><th >名称</th><th >电话</th><th >删除</th><th>保存</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="vendors_table">   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="icon-enter me-2 fs-5"></i> 库位信息维护
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="input-group mb-2">
+
+                                            <input id="appName" type="text" list="appNamelist"/>
+                                            <datalist id="appNamelist">
+                                                <option>黄金糕</option>
+                                                <option>双皮奶</option>
+                                                <option>蚵仔煎</option>
+                                                <option>龙须面</option>
+                                                <option>北京烤鸭</option>
+                                            </datalist>
+              
+                                            <div class="form-control"></div>           
+                                            <button class="btn btn-outline-secondary" type="button" onclick=""> 打印全部页 </button>
+                                        </div>
+                                        <table class="table table-bordered" id="recode_talbe">
+                                            <thead>
+                                                <tr>
+                                                    <th >ID</th><th >名称</th><th >电话</th><th >操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="recodes_table">   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="icon-enter me-2 fs-5"></i> 部门信息维护
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="input-group mb-2">
+                                            <select id="cat_select" onChange="cat_select_change(this)"> 
+                                                <option value="0">所有类别</option> 
+                                            </select> 
+            
+                                            <div class="form-control"></div>           
+                                            <button class="btn btn-outline-secondary" type="button" onclick=""> 打印全部页 </button>
+                                        </div>
+                                        <table class="table table-bordered" id="recode_talbe">
+                                            <thead>
+                                                <tr>
+                                                    <th >ID</th><th >名称</th><th >电话</th><th >操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="recodes_table">   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+
+                <!-- 开始页脚版权申明-->
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div id="copyright_div" class="text-muted"></div>
+                            <div>
+                                sldfjsd
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- 结束页脚版权申明-->
+            </div>
+            <!-- 结束内容 -->
+        </div>
+        <script src="js/info.js"></script>
+    </body>
+</html>

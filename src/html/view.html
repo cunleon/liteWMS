@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>LiteWMS 极简仓库管理系统</title> 
+        <link href="css/styles.css" rel="stylesheet" />     
+        <link href="css/icomoon.css" rel="stylesheet" />  
+        <link href="css/sweetalert.css" rel="stylesheet" />       
+        <script src="js/jquery-3.7.0.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
+        <script src="js/wms_common.js"></script>   
+        <script src="js/xlsx.mini.min.js"></script>        
+<style>
+.category-select{
+  flex:auto;
+}
+
+.my-table{
+    margin-top: 16px;
+}
+
+tr{
+  padding: 0px;
+} 
+td{
+  padding: 0px;
+} 
+tr:hover{
+    background-color: #FFF;
+}
+td * {
+ margin: 0px;
+ width: 100%;
+ height: 2em;
+ border:0px;
+ background-color: transparent;
+}
+
+td *:focus {
+    outline: 0px;
+    border:0px;
+}
+
+.td_input:focus{
+    outline: 0px;
+}
+
+td>button{
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  background-color:rgb(0, 0, 0,0);
+  border: 0;
+}
+td>button:hover{
+  color: brown;
+}
+
+.dlg-size{
+    width: 75%;
+}
+
+.wem-2{
+    max-width: 64px;
+}
+.wem-4{
+    max-width: 124px;
+}
+
+tbody tr:hover{
+    background-color: antiquewhite;
+}
+
+
+.td_w1{width: 5%;}
+.td_w2{width: 10%;}
+.td_w3{width: 15%;}
+.td_w4{width: 20%;}
+.td_w5{width: 25%;}
+.td_w6{width: 30%;}
+.td_w7{width: 35%;}
+.td_w8{width: 40%;}
+.td_w9{width: 45%;}
+.td_w10{width: 50%;}
+.td_w11{width: 55%;}
+.td_w12{width: 60%;}
+.td_w13{width: 65%;}
+.td_w14{width: 70%;}
+.td_w15{width: 75%;}
+.td_w16{width: 80%;}
+.td_w17{width: 85%;}
+.td_w18{width: 90%;}
+.td_w19{width: 95%;}
+.td_w20{width: 100%;}
+
+</style>
+    </head>
+    <body class="sb-nav-fixed">
+
+        <div id="layoutSidenav">
+            <div id="toggle_div">                        
+                <!-- Sidebar Toggle-->
+                <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 fs-2" id="sidebarToggle"><i class="icon-indent-increase"></i></button>
+            </div> 
+            <!-- 开始侧边栏 -->
+            <div id="layoutSidenav_nav">       
+            </div>
+
+            <!-- 开始内容 -->
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4 fill_height page-contenx-card">
+                        <h3 class="mt-4 pading_left">记录查询与打印</h3>
+                        <!-- 左侧 -->           
+                        <div class="col-xl-12 col-md-12">
+                            
+
+                            <div>
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="icon-enter me-2 fs-5"></i> 出入库记录
+                                    </div>
+        
+                                    <div class="card-body">
+                                        <div class="input-group mb-2">
+                                            <select id="time_select" onChange="filter_change()"> 
+                                                <option value="0">全年</option>
+                                                <option value="1">一月份</option> 
+                                                <option value="2">二月份</option> 
+                                                <option value="3">三月份</option> 
+                                                <option value="4">四月份</option> 
+                                                <option value="5">五月份</option> 
+                                                <option value="6">六月份</option> 
+                                                <option value="7">七月份</option> 
+                                                <option value="8">八月份</option> 
+                                                <option value="9">九月份</option> 
+                                                <option value="10">十月份</option> 
+                                                <option value="11">十一月份</option> 
+                                                <option value="12">十二月份</option> 
+                                            </select>
+                                            <select id="cat_select" onChange="cat_select_change(this)"> 
+                                                <option value="0">所有类别</option> 
+                                            </select> 
+                                            <select  id="item_select" onChange="filter_change()">
+                                                <option value="0">所有物品</option>  
+                                            </select>                                
+                                            <select  id="in_out_select" onChange="filter_change()">
+                                                <option value="0">出库和入库</option> 
+                                                <option value="1">仅出库</option>  
+                                                <option value="2">仅入库</option>
+                                            </select>
+                                            <select  id="vendor_select" onChange="filter_change()">
+                                                <option value="">所有供应商</option> 
+                                            </select>
+                                            <div class="form-control"></div>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="on_page_prev()"> 上一页 </button>
+                                            <span id="page_info" class="input-group-text" >第1页共10页</span>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="on_page_next()"> 下一页 </button>
+            
+                                            <div class="form-control"></div>           
+            
+                                            <button class="btn btn-outline-secondary" type="button" onclick="export_all_clicked()"> 导出全部 </button>
+                                            <button class="btn btn-outline-secondary" type="button" onclick=""> 打印当前页 </button>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="print_all_clicked()"> 打印全部页 </button>
+                                        </div>
+                                        <table class="table table-bordered" id="recode_talbe">
+                                            <thead>
+                                                <tr>
+                                                    <th >ID</th><th >字</th><th >号</th><th >日期</th>
+                                                    <th >分类</th><th>物品名称</th><th >摘要或备注</th> <th>单位</th> 
+                                                    <th >入库</th><th >出库</th><th >总金额</th><th >库存</th>
+                                                    <th >供货商/领用人</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="recodes_table">   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+
+                <!-- 开始页脚版权申明-->
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div id="copyright_div" class="text-muted"></div>
+                            <div>
+                                sldfjsd
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- 结束页脚版权申明-->
+            </div>
+            <!-- 结束内容 -->
+        </div>
+
+        <script src="js/view.js"></script>
+    </body>
+</html>

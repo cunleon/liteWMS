@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>LiteWMS 极简仓库管理系统</title> 
+        <link href="css/styles.css" rel="stylesheet" />     
+        <link href="css/icomoon.css" rel="stylesheet" />  
+        <link href="css/sweetalert.css" rel="stylesheet" />       
+        <script src="js/jquery-3.7.0.min.js"></script>
+        <script src="js/bootstrap-5.3.3/bootstrap.bundle.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
+        <script src="js/wms_common.js"></script>     
+<style>
+    #toggle_div{
+        z-index: 10000;
+        height: 56px;
+        position: absolute;
+        padding-top: 16px;;
+        top:0;
+        left:16px;
+    }
+    .pading_left{
+        padding-left: 64px;
+    }
+</style>
+    </head>
+    <body class="sb-nav-fixed">
+
+        <div id="layoutSidenav">
+            <!--#include file="/inc/side-nav.html"-->
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+
+                        <h3 class="mt-4 pading_left">
+                            信息概要
+                        </h3>
+                        <hr>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                入库登记表
+                            </div>
+                            <div>
+                                <select id="cat_select"></select>
+                                <select id="item_select"></select>
+                                <select id="sector_select"></select>
+
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple2">
+                                    <thead>
+                                        <tr>
+                                            <th>物品分类</th>
+                                            <th>物品名称</th>
+                                            <th>库存数量</th>
+                                            <th>出库数量</th>
+                                            <th>使用部门</th>
+                                            <th>备注</th>
+                                        </tr>
+                                    </thead>
+   
+                                    <tbody>
+         
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                出库记录查寻
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>物品分类</th>
+                                            <th>物品名称</th>
+                                            <th>   </th>
+                                            <th>出库数量</th>
+                                            <th>使用部门</th>
+                                            <th>备注</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+     
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                sldfjsd
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
